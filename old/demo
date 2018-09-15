@@ -1,0 +1,14 @@
+LOP:    LDA     SUM     //把SUM載入到AC
+		ADD     B       //把AC 和 B 相加，結果存回AC
+		STA     SUM     //把AC 存回 SUM
+		LDA     B       //把B 載入AC
+		INC             //遞增AC
+		STA     B       //把AC存回 B
+		ISZ     I       //遞增 I 且如果 I 為零則跳躍下一行指令
+		BUN     LOP     //跳到LOP:
+		HLT             //暫停計算機
+		ORG     200     //設定到地址200的位置
+I:      DEC     -100    //I的值為十進位的 -100
+SUM:    DEC     0       //SUM的值為十進位的 0
+B:      DEC     1       //B的值為十進位的1
+		END             //結束
