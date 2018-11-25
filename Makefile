@@ -5,5 +5,5 @@ out: as.exe
 as.exe: main.c func.c
 	gcc main.c func.c -o as.exe
 clean:
-	rm -f *.o *.exe *.gch
+	rm -f *.o *.exe* *.gch
 	
