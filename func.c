@@ -6,7 +6,7 @@
 
 
 static char *instr[] = {"AND", "ADD", "LDA", "STA", "BUN", "BSA", "ISZ", "CLA" ,"CLE", "CMA",
-                        "CME", "CIR", "CIL", "INC", "SPA", "SNA", "SZA", "SZE", "HLT", "INP"
+                        "CME", "CIR", "CIL", "INC", "SPA", "SNA", "SZA", "SZE", "HLT", "INP",
                         "OUT", "SKI", "SKO", "ION", "IOF", "HEX", "DEC", "\0"};
 
 static int instr_code[] = {0, 0x1000, 0x2000, 0x3000, 0x4000, 0x5000, 0x6000, 0x7800, 0x7400, 
