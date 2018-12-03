@@ -143,7 +143,7 @@ int first_pass(FILE *in, struct line *tabel, struct symbol *symbol_tabel)   //�
 uint16_t *second_pass(struct line *tabel, struct symbol *symbol_tabel)      //傳回機械碼
 {
     uint16_t *mcode = malloc(sizeof(uint16_t) * MEM);
-    int n = 0;                                                      //LC偏移量，每有一次nop增加一次，意思是跳過n個LC
+
     for(int i = 0; tabel[i].lc != -1; i++)
     {
         for(int j = 0; symbol_tabel[j].lc != -1; j++)           //symbol->實際地址 並 產生機械碼
@@ -152,10 +152,8 @@ uint16_t *second_pass(struct line *tabel, struct symbol *symbol_tabel)      //�
                 tostr(symbol_tabel[j].lc, tabel[i].param);
                 break;
             }
-        if(isnop(tabel[i].instr))   //如果是NOP
-            n++;    
-        else if(!isorg(tabel[i].instr) && !isend(tabel[i].instr))    //忽略ORG & END
-            mcode[tabel[i].lc - n] = coding(tabel[i]);
+        if(!isorg(tabel[i].instr) && !isend(tabel[i].instr))    //忽略ORG & END
+            mcode[tabel[i].lc] = coding(tabel[i]);
     }
 
     return mcode;
