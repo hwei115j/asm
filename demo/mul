@@ -1,0 +1,24 @@
+//乘法程式
+        ORG 100
+LOP,    CLE
+        LDA Y
+        CIR
+        STA Y
+        SZE
+        BUN ONE
+        BUN ZRO
+ONE,    LDA X
+        ADD P
+        STA P
+        CLE
+ZRO,    LDA X
+        CIL
+        STA X
+        ISZ CTR
+        BUN LOP
+        HLT
+CTR,    DEC -8
+X,      HEX 0x0001  //被乘數
+Y,      HEX 0x0001  //乘數
+P,      HEX 0       //乘積
+        END
