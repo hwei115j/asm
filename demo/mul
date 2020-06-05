@@ -16,9 +16,13 @@ ZRO,    LDA X
         STA X
         ISZ CTR
         BUN LOP
+        LDA P
+        ADD NUM
+        OUT
         HLT
 CTR,    DEC -8
-X,      HEX 0x0001  //被乘數
-Y,      HEX 0x0001  //乘數
+X,      DEC 2  //被乘數
+Y,      DEC 2  //乘數
 P,      HEX 0       //乘積
+NUM,    DEC 48
         END
