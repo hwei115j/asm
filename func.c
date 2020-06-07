@@ -45,6 +45,10 @@ static int ishex(char *str)
     return !strcmp(str, "HEX");
 }
 
+static int isdec(char *str)
+{
+    return !strcmp(str, "DEC");
+}
 static int tohex(char *str)
 {
     int num;
@@ -84,10 +88,8 @@ static int decode(char *in, struct line *tabel)    //建立表格，傳回的是
 {
     char str[4][20] = {};
     int lc = tabel->lc + 1;
-
     clean(in);
     sscanf(in, "%s%s%s%s", str[0], str[1], str[2], str[3]);
-
     for(int i = 0; i < 4; i++)  //建立每一行的表格
     {
         if(islab(str[i]))
@@ -136,7 +138,6 @@ int first_pass(FILE *in, struct line *tabel, struct symbol *symbol_tabel)   //�
             symbol_tabel[j++].lc = tabel[i].lc;
             symbol_tabel[j].lc = -1;
         }
-
     return 0;
 }
 
@@ -147,7 +148,7 @@ uint16_t *second_pass(struct line *tabel, struct symbol *symbol_tabel)      //�
     for(int i = 0; tabel[i].lc != -1; i++)
     {
         for(int j = 0; symbol_tabel[j].lc != -1; j++)           //symbol->實際地址 並 產生機械碼
-            if(!strcmp(tabel[i].param, symbol_tabel[j].label))
+            if(!(isdec(tabel[i].instr) || ishex(tabel[i].instr)) && !strcmp(tabel[i].param, symbol_tabel[j].label))
             {
                 tostr(symbol_tabel[j].lc, tabel[i].param);
                 break;
